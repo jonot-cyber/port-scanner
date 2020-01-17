@@ -1,0 +1,2 @@
+import os, re
+print("Ports found:\n"+"\n".join(list(dict.fromkeys([re.sub(r':{3}','',re.sub(r'^\d+\.\d+\.\d+\.\d+:','',x)) for x in [x for x in os.popen('netstat -tulpn | grep LISTEN').read().split(' ') if x != '' and re.match(r'^\d.*:\d+$|^:{3}\d+$',x)]]))))
